@@ -1,0 +1,249 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+* {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--main-bg);
+}
+
+:root {
+    --red: red;
+    --white: #fff;
+    --primary: #000;
+    --secondary: blue;
+    --main-bg: aqua;
+}
+
+@mixin background ($lightness: true) {
+    @if($lightness) {
+        background-color: var(--white);
+        color: var(--red);
+    }
+
+    @else {
+        background-color: var(--red);
+        color: var(--white);
+    }
+}
+
+@mixin breakpoint-bg ($lightness: true) {
+    @if($lightness) {
+        background-color: var(--primary);
+        color: var(--white);
+    }
+
+    @else {
+        background-color: var(--secondary);
+        color: var(--white);
+    }
+}
+
+@mixin button ($bg-color) {
+    background-color: $bg-color;
+    width: fit-content;
+    padding: 16px;
+}
+
+@mixin flex($align, $justify) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+
+@function add-px($px) {
+    $var: 10px;
+    $px: $px+$var;
+    @return $px;
+}
+
+//*content*//
+
+.card {
+    width: add-px(100);
+    background-color: #000;
+
+    p {
+        color: white;
+    }
+}
+
+.cardP {
+    @apply block items-center justify-center px-2 py-2 gap-2;
+}
+
+.card-wrap {
+    @include background($lightness: true);
+    margin-top: 20px;
+}
+
+.card-color {
+    @include background($lightness: false);
+    margin-top: 20px;
+}
+
+h1 {
+    color: yellow;
+}
+
+@mixin bp($width) {
+    @if $width ==sm {
+        @media (min-width:640px) {
+            @content;
+        }
+    }
+
+    @if $width ==md {
+        @media (min-width:768px) {
+            @content;
+        }
+    }
+
+    @if$width ==lg {
+        @media (min-width:1024px) {
+            @content;
+        }
+    }
+
+    @if$width ==xl {
+        @media (min-width:1280px) {
+            @content;
+        }
+    }
+
+    @if$width ==2xl {
+        @media (min-width:1536px) {
+            @content;
+        }
+    }
+}
+
+@include bp(sm) {
+    h1 {
+        color: var(--secondary);
+    }
+
+    .card {
+        width: add-px(100);
+        background-color: #000;
+
+        p {
+            color: white;
+        }
+    }
+
+    .cardP {
+        @apply block items-center justify-center px-2 py-2 gap-2;
+    }
+
+    .card-wrap {
+        @include background($lightness: true);
+        margin-top: 20px;
+    }
+
+    .card-color {
+        @include background($lightness: false);
+        margin-top: 20px;
+    }
+}
+
+
+@include bp(md) {
+    h1 {
+        color: var(--secondary);
+    }
+
+    .card {
+        width: add-px(100);
+        background-color: #000;
+
+        p {
+            color: white;
+        }
+    }
+
+    .cardP {
+        @apply flex items-center justify-center px-2 py-2 gap-2;
+    }
+
+    .card-wrap {
+        @include background($lightness: true);
+        margin-top: 20px;
+    }
+
+    .card-color {
+        @include background($lightness: false);
+        margin-top: 20px;
+    }
+}
+
+@include bp(lg) {
+    h1 {
+        color: var(--red);
+    }
+
+    .cardP {
+        @apply flex items-center justify-center px-2 py-2 gap-2;
+    }
+
+    .card-wrap {
+        @include breakpoint-bg($lightness: true);
+        margin-top: 20px;
+    }
+
+    .card-color {
+        @include breakpoint-bg($lightness: false);
+        margin-top: 20px;
+    }
+}
+
+@include bp(xl) {
+    h1 {
+        color: var(--red);
+    }
+
+    .cardP {
+        @apply flex items-center justify-center px-2 py-2 gap-2;
+    }
+
+
+    .card-wrap {
+        @include breakpoint-bg($lightness: true);
+        margin-top: 20px;
+    }
+
+    .card-color {
+        @include breakpoint-bg($lightness: false);
+        margin-top: 20px;
+    }
+}
+
+@include bp(2xl) {
+    h1 {
+        color: var(--red);
+    }
+
+    .cardP {
+        @apply flex items-center justify-center px-2 py-2 gap-2;
+    }
+
+
+    .card-wrap {
+        @include breakpoint-bg($lightness: true);
+        margin-top: 20px;
+    }
+
+    .card-color {
+        @include breakpoint-bg($lightness: false);
+        margin-top: 20px;
+    }
+}
